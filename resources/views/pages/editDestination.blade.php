@@ -8,7 +8,7 @@
 
             <h3 class="mb-4 text-center">Edit Destinasi</h3>
 
-            <form action="/destinations/{{ $destination->id }}" method="POST">
+            <form action="/destinations/{{ $destination->id }}/update" method="POST">
                 @csrf
                 @method('PUT')
 
