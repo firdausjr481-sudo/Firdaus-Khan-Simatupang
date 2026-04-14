@@ -10,7 +10,7 @@
         
     @endif
     <div class="d-flex justify-content-between mb-3">
-        <h2>List of Destinations</h2>
+        <h2 class="fw-bold text-primary mb-0">List of Destinations</h2>
         <form action="/destinations" method= "GET">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search.." name="search" value="{{request('search') }}

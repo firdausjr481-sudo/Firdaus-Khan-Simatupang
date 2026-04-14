@@ -38,7 +38,7 @@
                                 <div>
                                     <small class="text-muted d-block">Lokasi</small>
                                     <span class="fw-semibold">{{ $destination->location }}</span>
-                                </div>
+                                </div>  
                             </div>
                         </div>
                         <div class="col-md-6">
