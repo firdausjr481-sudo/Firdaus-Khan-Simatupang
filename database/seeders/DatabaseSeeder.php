@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Attractions;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +25,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(DestinationSeeder::class);
          $this->call(userseeder::class);
-    }
+        $this->call(AttractionSeeder::class);  
+         }
 }

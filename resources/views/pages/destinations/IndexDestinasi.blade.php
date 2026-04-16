@@ -56,10 +56,10 @@
                     <td>{{ $d->working_days }}</td>
                     <td>
                         <a href="/destinations/{{ $d->id }}/edit" class="btn btn-warning">Edit</a>
-                        <a href="/detaildestinasi/{{ $d->id }}" class="btn btn-info btn-sm me-1" title="Lihat Detail">
+                        <a href="{{route('destinations.show', $d->id)}}" class="btn btn-info btn-sm me-1" title="Lihat Detail">
                             Detail
                         </a>
-                        <form action="/destination/{{ $d->id }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus {{ $d->name }}?');">
+                        <form action="{{route('destinations.delete', $d->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin hapus {{ $d->name }}?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" title="Hapus Destinasi">

@@ -58,8 +58,9 @@ Route::get( "/destinasi", function () {
 
 Route::prefix('destinations')->name('destinations.')->group(function () { 
     Route::get("/",action: [DestinationController::class, 'index'])->name('index');
+     Route::get("/create", [DestinationController::class, 'create'])->name('create');
     Route::get( "/{id}", [DestinationController::class,'show'])->name('show');
-    Route::get("/create", [DestinationController::class, 'create'])->name('create');
+   
     Route::post("/", [DestinationController::class, 'store'])->name('store');
     Route::delete('/{id}', [DestinationController::class, 'delete'])->name('delete');
     Route::get("/{id}/edit",[DestinationController::class, 'edit'])->name('edit');

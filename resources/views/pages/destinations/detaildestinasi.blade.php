@@ -1,6 +1,7 @@
 @extends('master')
 
 @section('content')
+@if($destination)
 <div class="container py-5">
     <div class="mb-4">
         <a href="{{ url()->previous() }}" class="btn btn-outline-secondary btn-sm shadow-sm px-3 rounded-pill">
@@ -79,6 +80,11 @@
         </div>
     </div>
 </div>
+@else
+    <div class="container py-5">
+        <div class="alert alert-warning">Destinasi tidak ditemukan</div>
+    </div>
+@endif
 
 <style>
     /* Styling khusus untuk memberikan kesan kedalaman */

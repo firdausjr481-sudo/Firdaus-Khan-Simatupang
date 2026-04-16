@@ -1,6 +1,19 @@
 @extends('master')
 
 @section('content')
+
+if ($errors->any()) {
+    <div class="alert alert-danger">
+        <ul class=" mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+}
+    
+@endif
+
 <div class="container py-5">
 
     <div class="glass p-5 rounded-4 shadow-lg">
@@ -26,6 +39,9 @@
                     <input type="text" name="name"
                         class="form-control form-control-lg rounded-3 border-0 shadow-sm"
                         value="{{ $user->name }}" required>
+                        @error('name')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                 </div>
 
                 <!-- Email -->
@@ -34,6 +50,9 @@
                     <input type="email" name="email"
                         class="form-control form-control-lg rounded-3 border-0 shadow-sm"
                         value="{{ $user->email }}" required>
+                        @error('email')
+                        <div class="text-danger">{{ $message }}</div> 
+                        @enderror
                 </div>
 
                 <!-- Password -->
@@ -44,6 +63,9 @@
                     <input type="password" name="password"
                         class="form-control form-control-lg rounded-3 border-0 shadow-sm"
                         placeholder="••••••••">
+                        @error('password')
+                        <div class="text-danger">{{ $message }}</div>
+                        @enderror
                 </div>
 
             </div>

@@ -19,7 +19,7 @@ class UserController extends Controller
         ->orderBy('id')
         ->paginate(5);
 
-        return view('pages.users.IndexUser', compact('users'));
+        return view('pages.users.indexuser', compact('users'));
     }
 
     public function show($id)

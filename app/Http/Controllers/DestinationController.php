@@ -28,15 +28,22 @@ class DestinationController extends Controller
 
     public function create()
     {
-        return view('pages.createDestination');
+        return view('pages.destinations.createDestination');
     }
 
     public function store(Request $request)
     {
-//  dd($request);
-        Destination::create($request->all());
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'location' => 'required',
+            'ticket_price' => 'required|numeric',
+            'working_hours' => 'nullable',
+            'working_days' => 'nullable',
+        ]);
+        \App\Models\Destination::create($validated);
 
-        return redirect('/destinations')->with('success','Destination created successfully.');
+        return redirect('/destinations')->with('success', 'Destination created successfully.');
     }
 
     public function delete($id)
