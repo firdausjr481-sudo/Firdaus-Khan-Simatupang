@@ -48,7 +48,9 @@
         <div class="text-danger">{{ $message }}</div>
     @enderror
 
+    <a href="/attractions" class="btn btn-secondary">Kembali</a>
     <button type="submit" class="btn btn-primary">Submit</button>
+    
 </form>
 
 @endsection

@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Models\Destination;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttractionController;
+use App\Http\Controllers\ReviewController;
 
 
 Route::get('/', function () {
@@ -86,3 +87,6 @@ Route::prefix('attractions')->name('attractions.')->group(function () {
     Route::put("/{id}/update", [AttractionController::class, 'update'])->name('update');
     Route::get("/{id}", [AttractionController::class, 'show'])->name('show');
 });
+
+
+Route::resource('reviews', ReviewController::class);

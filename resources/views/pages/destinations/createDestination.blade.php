@@ -14,13 +14,32 @@
     
 @endif
 
+<form action="{{route('destinations.store')}}" method="POST" class="form-floating" enctype="multipart/form-data">
+    @csrf
+
+    <div class=form-floating mb-3>
+        <input type="text" class="form-control" id="floatingInput" placeholder="Image" name=
+        "image" valeu="{{ old('image') }}" accept="jpg.jpeg.png">
+            <label for="floatingInput">Gambar Destinasi</label>
+            @error('image')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
+    </div>
+
+    
+        <label for="name">Nama Destinasi</label>
+        @error('name')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+    </div>
+
 <div class="container mt-5">
     <div class="card shadow-lg border-0 rounded-4">
         <div class="card-body p-4">
 
             <h3 class="mb-4 text-center">Tambah Destinasi</h3>
 
-            <form action="/destinations" method="POST">
+            <form action="{{ route('destinations.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Nama -->

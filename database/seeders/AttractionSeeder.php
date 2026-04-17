@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Attraction;
+use App\Models\Destination;
 
 class AttractionSeeder extends Seeder
 {
@@ -12,11 +14,12 @@ class AttractionSeeder extends Seeder
      */
     public function run(): void
     {
-       for($i = 0; $i <= 10; $i++) {
-            \App\Models\Attraction::create([
+        for ($i = 0; $i <= 10; $i++) {
+            Attraction::create([
+                'destination_id' => Destination::inRandomOrder()->first()->id,
                 'name' => fake("id_ID")->name(),
                 'description' => fake("id_ID")->sentence(),
-            ]);
-        }
-    }
+                ]);
+            }
+     }
 }

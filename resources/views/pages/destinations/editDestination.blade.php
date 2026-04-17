@@ -22,7 +22,7 @@
 
             <h3 class="mb-4 text-center">Edit Destinasi</h3>
 
-            <form action="/destinations/{{ $destination->id }}/update" method="POST">
+            <form action="/destinations/{{ $destination->id }}/update" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -84,6 +84,15 @@
                     @error('working_days')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
+                </div>
+
+                    <!-- Gambar -->
+                <div class="mb-4">
+                    <label for="image" class="form-label">Gambar Destinasi</label>
+                    <input type="file" class="form-control" id="image" name="image" accept=".jpg, .jpeg, .png">
+                    @error('image')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <!-- Tombol -->

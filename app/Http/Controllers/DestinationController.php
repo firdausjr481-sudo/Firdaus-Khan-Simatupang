@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Destination;
 use Illuminate\Queue\Jobs\RedisJob;
+use Illuminate\Support\Facades\Storage;
 
 class DestinationController extends Controller
 {
@@ -40,7 +41,14 @@ class DestinationController extends Controller
             'ticket_price' => 'required|numeric',
             'working_hours' => 'nullable',
             'working_days' => 'nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+            if ($request->hasFile('image')) {
+                $imagepPath = $request->file('image')->store('images', 'public');
+                @$validated['image'] = basename($imagepPath);
+            }
+                
         \App\Models\Destination::create($validated);
 
         return redirect('/destinations')->with('success', 'Destination created successfully.');
@@ -64,11 +72,29 @@ class DestinationController extends Controller
     }
     public function update(Request $request, $id)
     {
+      
+        $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'location' => 'required',
+            'ticket_price' => 'required|numeric',
+            'working_hours' => 'nullable',
+            'working_days' => 'nullable',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
         $destination=Destination::find($id);
         if ($destination) {
-            $destination->update($request->all());
-            return redirect('/destinations')->with('success', 'Destination update successfunlly.');
+            if ($destination->image && $request->hasFile('image')) {
+                Storage::disk('public')->delete('images/' . $destination->image);
+            }
+
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('images', 'public');
+                $validated['image'] = basename($imagePath);
+            }
+            $destination->update($validated);
+            return redirect('/destinations')->with('success', 'Destination updated successfully.');
         } else {
             return redirect('/destinations')->with('error', 'Destination not found.');
         }
