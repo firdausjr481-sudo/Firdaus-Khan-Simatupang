@@ -22,7 +22,7 @@
 
     <!-- Header + Button -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold text-primary mb-0">Daftar Destinasi Wisata</h2>
+        
         <a href="/destinations/create" class="btn btn-success px-4">
             + Tambah Destinasi
         </a>
@@ -65,7 +65,7 @@
                             <button type="submit" class="btn btn-danger btn-sm" title="Hapus Destinasi">
                                 Hapus
                             </button>
-                        </form>
+                        </form> 
                     </td>
                 </tr>
             

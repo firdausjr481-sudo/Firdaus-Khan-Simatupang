@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttractionController;
 use App\Http\Controllers\ReviewController;
 
+require __DIR__.'/auth.php';
+
+Route::get('/das`hboard', function () {
+    return redirect()->route('destinations.index');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,18 +63,17 @@ Route::get( "/destinasi", function () {
 //     return view( 'pages.detaildestinasi', compact("destination"));
 // });
 
-Route::prefix('destinations')->name('destinations.')->group(function () { 
+Route::prefix('destinations')->name('destinations.')->middleware('auth')->group(function () { 
     Route::get("/",action: [DestinationController::class, 'index'])->name('index');
      Route::get("/create", [DestinationController::class, 'create'])->name('create');
     Route::get( "/{id}", [DestinationController::class,'show'])->name('show');
-   
     Route::post("/", [DestinationController::class, 'store'])->name('store');
     Route::delete('/{id}', [DestinationController::class, 'delete'])->name('delete');
     Route::get("/{id}/edit",[DestinationController::class, 'edit'])->name('edit');
     Route::put("/{id}/update", [DestinationController::class, 'update'])->name('update');
 });
 
-Route::prefix('users')->name('users.')->group(function() {
+Route::prefix('users')->name('users.')->middleware('auth')->group(function() {
     Route::get("/",[UserController::class, 'index'])->name('index');
     Route::get("/create", [UserController::class, 'create'])->name('create');
     Route::post("/", [UserController::class, 'store' ])->name('store');
@@ -78,7 +83,7 @@ Route::prefix('users')->name('users.')->group(function() {
     Route::get( "/{id}", [UserController::class,'show'])->name('show');
 });
 
-Route::prefix('attractions')->name('attractions.')->group(function () {
+Route::prefix('attractions')->name('attractions.')->middleware('auth')->group(function () {
     Route::get("/", [AttractionController::class, 'index'])->name('index');
     Route::get("/create", [AttractionController::class, 'create'])->name('create');
     Route::post("/", [AttractionController::class, 'store'])->name('store');
@@ -89,4 +94,4 @@ Route::prefix('attractions')->name('attractions.')->group(function () {
 });
 
 
-Route::resource('reviews', ReviewController::class);
+Route::resource('reviews', ReviewController::class)->middleware('auth');

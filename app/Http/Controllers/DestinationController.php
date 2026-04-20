@@ -73,7 +73,7 @@ class DestinationController extends Controller
     public function update(Request $request, $id)
     {
       
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required',
             'description' => 'nullable',
             'location' => 'required',
